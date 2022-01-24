@@ -16,7 +16,7 @@ class OnboardingViewController: UIViewController {
     }()
     
     private var startButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("Let's start collecting", for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 16
@@ -63,6 +63,7 @@ class OnboardingViewController: UIViewController {
             make.centerX.equalTo(view)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
         }
+        startButton.addTarget(self, action: #selector(handlerButton), for: .touchUpInside)
         
         onboardingView.addSubview(titleText)
         titleText.snp.makeConstraints { make in
@@ -71,6 +72,11 @@ class OnboardingViewController: UIViewController {
         }
     }
     
+    @objc func handlerButton() {
+        print(#function)
+//        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
